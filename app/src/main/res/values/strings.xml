@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">FunApplication</string>
+    <string name="hello">Hey there!</string>
+    <string name="create_account">Create an account</string>
+    <string name="welcome">Welcome</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="hide_password">Hide Password</string>
+    <string name="show_password">Show Password</string>
+    <string name="terms_and_conditions">By Continuing you accept our Privacy Policy and Terms of Use</string>
+    <string name="tnc_header">Terms and Conditions</string>
+
 </resources>
