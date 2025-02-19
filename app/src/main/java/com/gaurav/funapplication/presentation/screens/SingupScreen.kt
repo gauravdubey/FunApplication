@@ -1,5 +1,6 @@
 package com.gaurav.funapplication.presentation.screens
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -12,17 +13,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.gaurav.funapplication.R
+import com.gaurav.funapplication.presentation.components.ButtonComponent
 import com.gaurav.funapplication.presentation.components.CheckBoxComponent
+import com.gaurav.funapplication.presentation.components.ClickableLoginTextComponent
+import com.gaurav.funapplication.presentation.components.DividerComponent
 import com.gaurav.funapplication.presentation.components.HeaderComponent
 import com.gaurav.funapplication.presentation.components.MyPasswordFieldComponent
 import com.gaurav.funapplication.presentation.components.MyTextFieldComponent
 import com.gaurav.funapplication.presentation.components.NormalTextComponent
+import com.gaurav.funapplication.presentation.navigation.AppRoutes
 
 @Composable
-fun SignupScreen() {
+fun SignupScreen(navController: NavController) {
+    BackHandler {
+        navController.popBackStack()
+    }
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -59,13 +67,20 @@ fun SignupScreen() {
             Spacer(modifier = Modifier.height(10.dp))
             CheckBoxComponent(
                 stringResource(R.string.terms_and_conditions),
+                onTextSelected = {
+                    navController.navigate(AppRoutes.TermsAndConditionsScreen.route) {
+                        popUpTo(AppRoutes.SignupScreen.route) { inclusive = true }
+                    }
+                }
             )
+            Spacer(modifier = Modifier.height(80.dp))
+            ButtonComponent(stringResource(R.string.register))
+            Spacer(modifier = Modifier.height(20.dp))
+            DividerComponent()
+            Spacer(modifier = Modifier.height(20.dp))
+            ClickableLoginTextComponent(isTryingToLogin = true, onTextSelected = {
+                navController.navigate(AppRoutes.LoginScreen.route)
+            })
         }
     }
-}
-
-@Preview
-@Composable
-fun SignupPreview() {
-    SignupScreen()
 }

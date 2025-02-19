@@ -5,6 +5,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.compose.rememberNavController
+import com.gaurav.funapplication.presentation.navigation.AppNavigation
 
 @Composable
 fun FunApp() {
@@ -12,6 +14,7 @@ fun FunApp() {
         modifier = Modifier.fillMaxSize(),
         color = Color.White
     ) {
-        SignupScreen()
+        val navController = rememberNavController()
+        AppNavigation(navController)
     }
 }
