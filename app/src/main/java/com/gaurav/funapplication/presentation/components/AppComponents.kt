@@ -91,7 +91,11 @@ fun HeaderComponent(value: String) {
 }
 
 @Composable
-fun MyTextFieldComponent(labelValue: String, painterResource: Painter) {
+fun MyTextFieldComponent(
+    labelValue: String,
+    painterResource: Painter,
+    onTextSelected: (String) -> Unit
+) {
     val textValue = remember { mutableStateOf("") }
 
     OutlinedTextField(
@@ -101,6 +105,7 @@ fun MyTextFieldComponent(labelValue: String, painterResource: Painter) {
         value = textValue.value,
         onValueChange = {
             textValue.value = it
+            onTextSelected(it)
         },
         label = {
             Text(
@@ -130,7 +135,11 @@ fun MyTextFieldComponent(labelValue: String, painterResource: Painter) {
 
 
 @Composable
-fun MyPasswordFieldComponent(labelValue: String, painterResource: Painter) {
+fun MyPasswordFieldComponent(
+    labelValue: String,
+    painterResource: Painter,
+    onTextSelected: (String) -> Unit
+) {
 
     val localFocusManager = LocalFocusManager.current
     val passwordValue = remember { mutableStateOf("") }
@@ -142,6 +151,7 @@ fun MyPasswordFieldComponent(labelValue: String, painterResource: Painter) {
         value = passwordValue.value,
         onValueChange = {
             passwordValue.value = it
+            onTextSelected(it)
         },
         label = { Text(text = labelValue) },
         leadingIcon = {
@@ -159,8 +169,11 @@ fun MyPasswordFieldComponent(labelValue: String, painterResource: Painter) {
         ),
         singleLine = true,
         maxLines = 1,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password, imeAction = ImeAction.Done),
-        keyboardActions = KeyboardActions{
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Password,
+            imeAction = ImeAction.Done
+        ),
+        keyboardActions = KeyboardActions {
             localFocusManager.clearFocus()
         },
         trailingIcon = {
@@ -297,7 +310,7 @@ fun DividerComponent() {
 }
 
 @Composable
-fun ClickableLoginTextComponent(isTryingToLogin: Boolean=true, onTextSelected: (String) -> Unit) {
+fun ClickableLoginTextComponent(isTryingToLogin: Boolean = true, onTextSelected: (String) -> Unit) {
     val initialText =
         if (isTryingToLogin) stringResource(R.string.already_account) else stringResource(R.string.do_not_have_account)
     val loginText =

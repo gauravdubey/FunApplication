@@ -67,11 +67,14 @@ dependencies {
     implementation(libs.retrofit.moshi.converter)
     implementation(libs.retrofit.logging.interceptor)
 
+    // View Model
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
     // Json
 //    implementation(libs.moshi)
 //    ksp(libs.moshi.codegen)
 
-    // Image loading
+    // Image loading(Coil)
     implementation(libs.coil)
 
     // ORM

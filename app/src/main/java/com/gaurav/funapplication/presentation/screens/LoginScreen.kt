@@ -48,12 +48,18 @@ fun LoginScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(20.dp))
             MyTextFieldComponent(
                 stringResource(R.string.email),
-                painterResource(R.drawable.ic_email)
+                painterResource(R.drawable.ic_email),
+                onTextSelected = {
+
+                }
             )
             Spacer(modifier = Modifier.height(10.dp))
             MyPasswordFieldComponent(
                 stringResource(R.string.password),
-                painterResource(R.drawable.ic_lock)
+                painterResource(R.drawable.ic_lock),
+                onTextSelected = {
+
+                }
             )
             Spacer(modifier = Modifier.height(10.dp))
             UnderlineTextComponent(stringResource(R.string.forgot_password))
