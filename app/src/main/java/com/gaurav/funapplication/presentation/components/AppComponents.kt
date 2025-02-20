@@ -94,7 +94,8 @@ fun HeaderComponent(value: String) {
 fun MyTextFieldComponent(
     labelValue: String,
     painterResource: Painter,
-    onTextSelected: (String) -> Unit
+    onTextSelected: (String) -> Unit,
+    errorStatus: Boolean=false
 ) {
     val textValue = remember { mutableStateOf("") }
 
@@ -129,7 +130,8 @@ fun MyTextFieldComponent(
         ),
         singleLine = true,
         maxLines = 1,
-        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next)
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+        isError =!errorStatus
     )
 }
 
@@ -138,7 +140,8 @@ fun MyTextFieldComponent(
 fun MyPasswordFieldComponent(
     labelValue: String,
     painterResource: Painter,
-    onTextSelected: (String) -> Unit
+    onTextSelected: (String) -> Unit,
+    errorStatus: Boolean=false
 ) {
 
     val localFocusManager = LocalFocusManager.current
@@ -192,7 +195,8 @@ fun MyPasswordFieldComponent(
                 Icon(imageVector = iconImage, contentDescription = description)
             }
         },
-        visualTransformation = if (passwordVisibility.value) VisualTransformation.None else PasswordVisualTransformation()
+        visualTransformation = if (passwordVisibility.value) VisualTransformation.None else PasswordVisualTransformation(),
+        isError = !errorStatus
 
     )
 }
@@ -249,9 +253,11 @@ fun ClickableTextComponent(value: String, onTextSelected: (String) -> Unit) {
 }
 
 @Composable
-fun ButtonComponent(value: String) {
+fun ButtonComponent(value: String, onButtonClicked: () -> Unit) {
     Button(
-        onClick = {},
+        onClick = {
+            onButtonClicked.invoke()
+        },
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(48.dp),

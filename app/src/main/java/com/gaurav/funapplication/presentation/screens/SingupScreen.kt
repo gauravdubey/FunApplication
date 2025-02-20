@@ -56,7 +56,8 @@ fun SignupScreen(
                 painterResource(R.drawable.ic_profile),
                 onTextSelected = {
                     loginViewModel.onEvent(UIEvent.FirstNameChanged(it))
-                }
+                },
+                errorStatus = loginViewModel.registrationUIState.value.firstNameError
             )
             Spacer(modifier = Modifier.height(10.dp))
             MyTextFieldComponent(
@@ -64,7 +65,8 @@ fun SignupScreen(
                 painterResource(R.drawable.ic_profile),
                 onTextSelected = {
                     loginViewModel.onEvent(UIEvent.LastNameChanged(it))
-                }
+                },
+                errorStatus = loginViewModel.registrationUIState.value.lastNameError
             )
             Spacer(modifier = Modifier.height(10.dp))
             MyTextFieldComponent(
@@ -72,7 +74,8 @@ fun SignupScreen(
                 painterResource(R.drawable.ic_email),
                 onTextSelected = {
                     loginViewModel.onEvent(UIEvent.EmailChanged(it))
-                }
+                },
+                errorStatus = loginViewModel.registrationUIState.value.emailError
             )
             Spacer(modifier = Modifier.height(10.dp))
             MyPasswordFieldComponent(
@@ -80,7 +83,8 @@ fun SignupScreen(
                 painterResource(R.drawable.ic_lock),
                 onTextSelected = {
                     loginViewModel.onEvent(UIEvent.PasswordChanged(it))
-                }
+                },
+                errorStatus = loginViewModel.registrationUIState.value.passwordError
             )
             Spacer(modifier = Modifier.height(10.dp))
             CheckBoxComponent(
@@ -92,7 +96,10 @@ fun SignupScreen(
                 }
             )
             Spacer(modifier = Modifier.height(80.dp))
-            ButtonComponent(stringResource(R.string.register))
+            ButtonComponent(stringResource(R.string.register),
+                onButtonClicked = {
+                    loginViewModel.onEvent(UIEvent.RegisterButtonClicked)
+                })
             Spacer(modifier = Modifier.height(20.dp))
             DividerComponent()
             Spacer(modifier = Modifier.height(20.dp))

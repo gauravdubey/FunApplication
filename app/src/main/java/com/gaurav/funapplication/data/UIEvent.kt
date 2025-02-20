@@ -6,4 +6,5 @@ sealed class UIEvent {
     data class EmailChanged(var email: String) : UIEvent()
     data class PasswordChanged(var password: String) : UIEvent()
 
+    data object RegisterButtonClicked : UIEvent()
 }

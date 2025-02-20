@@ -64,7 +64,10 @@ fun LoginScreen(navController: NavController) {
             Spacer(modifier = Modifier.height(10.dp))
             UnderlineTextComponent(stringResource(R.string.forgot_password))
             Spacer(modifier = Modifier.height(80.dp))
-            ButtonComponent(stringResource(R.string.login))
+            ButtonComponent(stringResource(R.string.login),
+                onButtonClicked = {
+
+                })
             Spacer(modifier = Modifier.height(20.dp))
             DividerComponent()
             Spacer(modifier = Modifier.height(20.dp))
