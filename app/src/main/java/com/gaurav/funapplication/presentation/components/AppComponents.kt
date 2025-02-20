@@ -202,7 +202,7 @@ fun MyPasswordFieldComponent(
 }
 
 @Composable
-fun CheckBoxComponent(value: String, onTextSelected: (String) -> Unit) {
+fun CheckBoxComponent(value: String, onTextSelected: (String) -> Unit, onCheckChanged:(Boolean)->Unit) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
@@ -212,6 +212,7 @@ fun CheckBoxComponent(value: String, onTextSelected: (String) -> Unit) {
             checked = checkState.value,
             onCheckedChange = {
                 checkState.value = it
+                onCheckChanged.invoke(it)
             })
         ClickableTextComponent(value = value, onTextSelected)
     }
@@ -253,7 +254,7 @@ fun ClickableTextComponent(value: String, onTextSelected: (String) -> Unit) {
 }
 
 @Composable
-fun ButtonComponent(value: String, onButtonClicked: () -> Unit) {
+fun ButtonComponent(value: String, onButtonClicked: () -> Unit, isEnable:Boolean=false) {
     Button(
         onClick = {
             onButtonClicked.invoke()
@@ -262,7 +263,9 @@ fun ButtonComponent(value: String, onButtonClicked: () -> Unit) {
             .fillMaxWidth()
             .heightIn(48.dp),
         contentPadding = PaddingValues(),
-        colors = ButtonDefaults.buttonColors(Color.Transparent)
+        colors = ButtonDefaults.buttonColors(Color.Transparent),
+        shape = RoundedCornerShape(50.dp),
+        enabled = isEnable
     ) {
         Box(
             modifier = Modifier

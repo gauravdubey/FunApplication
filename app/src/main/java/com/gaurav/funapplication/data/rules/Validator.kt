@@ -19,7 +19,12 @@ object Validator {
     }
     fun validatePassword(password: String): ValidationResults {
         return ValidationResults(
-            (password.isNotEmpty() && password.length >= 4)
+            (password.isNotEmpty() && password.length >= 6)
+        )
+    }
+    fun validatePrivacyPolicyAcceptance(statusValue: Boolean): ValidationResults {
+        return ValidationResults(
+            statusValue
         )
     }
 }

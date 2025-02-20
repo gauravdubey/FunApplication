@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -57,6 +58,7 @@ dependencies {
     // Dependency Injection
     implementation(libs.hilt)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.firebase.auth)
     ksp(libs.hilt.compiler)
 
     // Navigation
@@ -82,6 +84,8 @@ dependencies {
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
 
+    //Firebase
+    implementation(platform(libs.firebase.bom))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

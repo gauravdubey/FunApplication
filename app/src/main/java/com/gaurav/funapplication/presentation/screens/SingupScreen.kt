@@ -93,13 +93,18 @@ fun SignupScreen(
                     navController.navigate(AppRoutes.TermsAndConditionsScreen.route) {
                         popUpTo(AppRoutes.SignupScreen.route) { inclusive = true }
                     }
+                },
+                onCheckChanged = {
+                    loginViewModel.onEvent(UIEvent.PrivacyPolicyCheckBoxClicked(it))
                 }
             )
             Spacer(modifier = Modifier.height(80.dp))
             ButtonComponent(stringResource(R.string.register),
                 onButtonClicked = {
                     loginViewModel.onEvent(UIEvent.RegisterButtonClicked)
-                })
+                },
+                isEnable = loginViewModel.allValidationsPassed.value
+            )
             Spacer(modifier = Modifier.height(20.dp))
             DividerComponent()
             Spacer(modifier = Modifier.height(20.dp))

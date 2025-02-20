@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "111320566852",
+    "project_id": "funapplication-cea76",
+    "storage_bucket": "funapplication-cea76.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:111320566852:android:e8bd5bea191cbc2b180011",
+        "android_client_info": {
+          "package_name": "com.gaurav.funapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGVFEXUKnKqvdtKpMX2OmWeETftdSXJvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
