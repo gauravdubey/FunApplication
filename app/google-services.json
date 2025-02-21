@@ -1,6 +1,6 @@
 {
   "project_info": {
-    "project_number": "111320566852",
+    "project_number": "Your project id",
     "project_id": "funapplication-cea76",
     "storage_bucket": "funapplication-cea76.firebasestorage.app"
   },
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCGVFEXUKnKqvdtKpMX2OmWeETftdSXJvc"
+          "current_key": "Enter Your Key"
         }
       ],
       "services": {
