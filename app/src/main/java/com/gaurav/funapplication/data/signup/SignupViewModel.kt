@@ -1,4 +1,4 @@
-package com.gaurav.funapplication.data
+package com.gaurav.funapplication.data.signup
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
@@ -6,49 +6,50 @@ import androidx.lifecycle.ViewModel
 import com.gaurav.funapplication.data.rules.Validator
 import com.google.firebase.auth.FirebaseAuth
 
-class LoginViewModel : ViewModel() {
+class SignupViewModel : ViewModel() {
 
-    private val TAG = LoginViewModel::class.simpleName
-    var registrationUIState = mutableStateOf(RegistrationUIState())
+    private val TAG = SignupViewModel::class.simpleName
+    var registrationUIState = mutableStateOf(SignupUIState())
     var allValidationsPassed = mutableStateOf(false)
+    var signupInProgress = mutableStateOf(false)
 
     /**
      * Handle event for all views
      */
-    fun onEvent(event: UIEvent) {
+    fun onSignupEvent(event: SignupUIEvent) {
         validateDataWithRules()
         when (event) {
-            is UIEvent.FirstNameChanged -> {
+            is SignupUIEvent.FirstNameChanged -> {
                 registrationUIState.value = registrationUIState.value.copy(
                     firstName = event.firstName
                 )
             }
 
-            is UIEvent.LastNameChanged -> {
+            is SignupUIEvent.LastNameChanged -> {
                 registrationUIState.value = registrationUIState.value.copy(
                     lastName = event.lastName
                 )
             }
 
-            is UIEvent.EmailChanged -> {
+            is SignupUIEvent.EmailChanged -> {
                 registrationUIState.value = registrationUIState.value.copy(
                     email = event.email
                 )
             }
 
-            is UIEvent.PasswordChanged -> {
+            is SignupUIEvent.PasswordChanged -> {
                 registrationUIState.value = registrationUIState.value.copy(
                     password = event.password
                 )
             }
 
-            is UIEvent.PrivacyPolicyCheckBoxClicked -> {
+            is SignupUIEvent.PrivacyPolicyCheckBoxClicked -> {
                 registrationUIState.value = registrationUIState.value.copy(
                     privacyPolicyAccepted = event.status
                 )
             }
 
-            is UIEvent.RegisterButtonClicked -> {
+            is SignupUIEvent.RegisterButtonClicked -> {
                 signUp()
             }
         }
@@ -112,12 +113,14 @@ class LoginViewModel : ViewModel() {
         email: String,
         password: String
     ) {
+        signupInProgress.value=true
         FirebaseAuth
             .getInstance()
             .createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 Log.d(TAG, "Inside_create_user_In_Firebase")
                 Log.d(TAG,"${it.isSuccessful}")
+                signupInProgress.value=false
                 if (it.isSuccessful) {
                     Log.d(TAG, "Successfully created user in firebase")
                 }

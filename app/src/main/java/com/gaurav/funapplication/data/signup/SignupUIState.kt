@@ -1,6 +1,6 @@
-package com.gaurav.funapplication.data
+package com.gaurav.funapplication.data.signup
 
-data class RegistrationUIState(
+data class SignupUIState(
     var firstName: String = "",
     var lastName: String = "",
     var email: String = "",

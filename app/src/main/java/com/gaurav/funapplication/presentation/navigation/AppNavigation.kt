@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.gaurav.funapplication.presentation.screens.HomeScreen
 import com.gaurav.funapplication.presentation.screens.LoginScreen
 import com.gaurav.funapplication.presentation.screens.SignupScreen
 import com.gaurav.funapplication.presentation.screens.TermsAndConditionsScreen
@@ -20,6 +21,9 @@ fun AppNavigation(navController: NavHostController) {
         }
         composable(AppRoutes.TermsAndConditionsScreen.route) {
             TermsAndConditionsScreen(navController)
+        }
+        composable(AppRoutes.HomeScreen.route) {
+            HomeScreen(navController)
         }
     }
 }

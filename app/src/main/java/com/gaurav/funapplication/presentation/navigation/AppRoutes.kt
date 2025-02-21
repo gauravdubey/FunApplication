@@ -1,8 +1,8 @@
 package com.gaurav.funapplication.presentation.navigation
 
 sealed class AppRoutes (val route:String){
-    object SignupScreen : AppRoutes("signup")
-    object LoginScreen : AppRoutes("login")
-    object TermsAndConditionsScreen : AppRoutes("terms")
-
+    data object SignupScreen : AppRoutes("signup")
+    data object LoginScreen : AppRoutes("login")
+    data object TermsAndConditionsScreen : AppRoutes("terms")
+    data object HomeScreen : AppRoutes("home")
 }
