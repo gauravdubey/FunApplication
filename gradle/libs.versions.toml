@@ -19,7 +19,6 @@ coil = "2.6.0"
 room = "2.6.1"
 hilt = "2.52"
 hilt-navigation-compose = "1.2.0"
-firebaseAuth = "23.2.0"
 firebaseAuthVersion = "23.2.0"
 
 
