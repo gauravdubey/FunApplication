@@ -25,7 +25,7 @@ import com.gaurav.funapplication.data.login.LoginViewModel
 import com.gaurav.funapplication.presentation.components.ButtonComponent
 import com.gaurav.funapplication.presentation.components.ClickableLoginTextComponent
 import com.gaurav.funapplication.presentation.components.DividerComponent
-import com.gaurav.funapplication.presentation.components.HeaderComponent
+import com.gaurav.funapplication.presentation.components.HeadingTextComponent
 import com.gaurav.funapplication.presentation.components.MyPasswordFieldComponent
 import com.gaurav.funapplication.presentation.components.MyTextFieldComponent
 import com.gaurav.funapplication.presentation.components.NormalTextComponent
@@ -58,7 +58,7 @@ fun LoginScreen(
             ) {
                 Spacer(modifier = Modifier.height(20.dp))
                 NormalTextComponent(stringResource(R.string.hello))
-                HeaderComponent(stringResource(R.string.welcome_back))
+                HeadingTextComponent(stringResource(R.string.welcome_back))
                 Spacer(modifier = Modifier.height(20.dp))
                 MyTextFieldComponent(
                     stringResource(R.string.email),

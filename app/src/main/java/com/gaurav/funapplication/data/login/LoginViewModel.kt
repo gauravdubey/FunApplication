@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.gaurav.funapplication.data.rules.Validator
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuth.AuthStateListener
 
 
 class LoginViewModel : ViewModel() {
@@ -90,18 +89,5 @@ class LoginViewModel : ViewModel() {
             }
     }
 
-    /**
-     * Logout the current user
-     */
-    fun logout() {
-        val firebaseAuth = FirebaseAuth.getInstance()
-        firebaseAuth.signOut()
-        val authStateListener = AuthStateListener {
-            if (it.currentUser == null) {
-                Log.d(TAG, "Inside_logout")
 
-            }
-        }
-        firebaseAuth.addAuthStateListener(authStateListener)
-    }
 }

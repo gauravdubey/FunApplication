@@ -1,12 +1,25 @@
 package com.gaurav.funapplication.presentation.components
 
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardActions
@@ -34,11 +47,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
@@ -52,9 +68,11 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gaurav.funapplication.R
+import com.gaurav.funapplication.data.home.NavigationItems
 import com.gaurav.funapplication.presentation.theme.bgColor
 import com.gaurav.funapplication.presentation.theme.colorGray
 import com.gaurav.funapplication.presentation.theme.colorPrimary
@@ -63,6 +81,9 @@ import com.gaurav.funapplication.presentation.theme.colorText
 import com.gaurav.funapplication.presentation.theme.colorWhite
 import com.gaurav.funapplication.presentation.theme.componentShapes
 
+/**
+ * Normal Text Component
+ */
 @Composable
 fun NormalTextComponent(value: String) {
     Text(
@@ -80,8 +101,11 @@ fun NormalTextComponent(value: String) {
     )
 }
 
+/**
+ * Header Component
+ */
 @Composable
-fun HeaderComponent(value: String) {
+fun HeadingTextComponent(value: String) {
     Text(
         text = value,
         modifier = Modifier
@@ -96,6 +120,9 @@ fun HeaderComponent(value: String) {
     )
 }
 
+/**
+ * Text Field Component
+ */
 @Composable
 fun MyTextFieldComponent(
     labelValue: String,
@@ -142,6 +169,9 @@ fun MyTextFieldComponent(
 }
 
 
+/**
+ * Password Field Component
+ */
 @Composable
 fun MyPasswordFieldComponent(
     labelValue: String,
@@ -207,6 +237,9 @@ fun MyPasswordFieldComponent(
     )
 }
 
+/**
+ * Checkbox Component
+ */
 @Composable
 fun CheckBoxComponent(
     value: String,
@@ -228,6 +261,9 @@ fun CheckBoxComponent(
     }
 }
 
+/**
+ * Clickable Text Component
+ */
 @Composable
 fun ClickableTextComponent(value: String, onTextSelected: (String) -> Unit) {
     val initialText = "By continuing you accept to our "
@@ -263,6 +299,9 @@ fun ClickableTextComponent(value: String, onTextSelected: (String) -> Unit) {
     )
 }
 
+/**
+ * Button Component
+ */
 @Composable
 fun ButtonComponent(value: String, onButtonClicked: () -> Unit, isEnable: Boolean = false) {
     Button(
@@ -297,6 +336,9 @@ fun ButtonComponent(value: String, onButtonClicked: () -> Unit, isEnable: Boolea
     }
 }
 
+/**
+ * Divider Component
+ */
 @Composable
 fun DividerComponent() {
     Row(
@@ -328,6 +370,9 @@ fun DividerComponent() {
     }
 }
 
+/**
+ * Clickable Text Component
+ */
 @Composable
 fun ClickableLoginTextComponent(isTryingToLogin: Boolean = true, onTextSelected: (String) -> Unit) {
     val initialText =
@@ -366,6 +411,9 @@ fun ClickableLoginTextComponent(isTryingToLogin: Boolean = true, onTextSelected:
     )
 }
 
+/**
+ * Underline Text Component
+ */
 @Composable
 fun UnderlineTextComponent(value: String) {
     Text(
@@ -384,13 +432,20 @@ fun UnderlineTextComponent(value: String) {
     )
 }
 
+/**
+ * App Tool Bar Component
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppToolbar(toolbarTitle: String, logoutButtonClicked: () -> Unit) {
+fun AppToolbar(
+    toolbarTitle: String,
+    logoutButtonClicked: () -> Unit,
+    navigationMenuClick: () -> Unit
+) {
     TopAppBar(
         title = { Text(text = toolbarTitle, color = Color.White, fontSize = 20.sp) },
         navigationIcon = {
-            IconButton(onClick = { /* Handle navigation */ }) {
+            IconButton(onClick = { navigationMenuClick.invoke() }) {
                 Icon(
                     imageVector = Icons.Filled.Menu,
                     contentDescription = stringResource(R.string.menu),
@@ -410,8 +465,94 @@ fun AppToolbar(toolbarTitle: String, logoutButtonClicked: () -> Unit) {
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color(0xFF6200EA), // Toolbar background color
+            containerColor = colorPrimary, // Toolbar background color
             titleContentColor = Color.White // Title text color
+        )
+    )
+}
+
+/**
+ * Navigation Drawer Header
+ */
+@Composable
+fun NavigationDrawerHeader() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(min = 200.dp)
+            .background(colorPrimary),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Image(
+            painter = painterResource(R.drawable.ic_profile_pic),
+            contentDescription = "Profile Pic",
+            modifier = Modifier
+                .size(80.dp)
+                .clip(CircleShape)
+                .border(2.dp, Color.Gray, CircleShape)
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        NavigationText("Gaurav Kumar", 20.sp)
+        Spacer(modifier = Modifier.height(8.dp))
+        NavigationText("i.gauravKumar@gmail.com", 14.sp)
+    }
+}
+
+/**
+ * Navigation Drawer Body
+ */
+@Composable
+fun NavigationDrawerBody(
+    navigationItems: List<NavigationItems>,
+    onNavigationItemClicked: (NavigationItems) -> Unit
+) {
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        items(navigationItems) {
+            NavigationItemRow(it, onNavigationItemClicked)
+        }
+    }
+}
+
+/**
+ * Navigation Item Row
+ */
+@Composable
+fun NavigationItemRow(item: NavigationItems, onNavigationItemClicked: (NavigationItems) -> Unit) {
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable {
+                onNavigationItemClicked.invoke(item)
+            }
+            .padding(20.dp)
+    ) {
+        Icon(imageVector = item.icon, contentDescription = item.description)
+        Spacer(modifier = Modifier.widthIn(18.dp))
+        NavigationText(item.title, 18.sp)
+    }
+}
+
+/**
+ * Navigation Item's Text Component
+ */
+@Composable
+fun NavigationText(title: String, textUnit: TextUnit) {
+    val shadowOffset = Offset(4f, 5f)
+    Text(
+        text = title,
+        style = TextStyle(
+            fontSize = textUnit,
+            fontWeight = FontWeight.Bold,
+            color = colorText,
+            shadow = Shadow(
+                color = colorPrimary,
+                offset = shadowOffset,
+                blurRadius = 2f
+            )
         )
     )
 }

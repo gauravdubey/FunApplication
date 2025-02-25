@@ -12,7 +12,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.gaurav.funapplication.R
-import com.gaurav.funapplication.presentation.components.HeaderComponent
+import com.gaurav.funapplication.presentation.components.HeadingTextComponent
 
 @Composable
 fun TermsAndConditionsScreen(navController: NavController) {
@@ -27,6 +27,6 @@ fun TermsAndConditionsScreen(navController: NavController) {
             .background(Color.White)
             .padding(28.dp)
     ) {
-        HeaderComponent(value = stringResource(R.string.tnc_header))
+        HeadingTextComponent(value = stringResource(R.string.tnc_header))
     }
 }

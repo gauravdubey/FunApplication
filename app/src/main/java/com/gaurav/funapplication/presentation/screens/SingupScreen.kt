@@ -26,7 +26,7 @@ import com.gaurav.funapplication.presentation.components.ButtonComponent
 import com.gaurav.funapplication.presentation.components.CheckBoxComponent
 import com.gaurav.funapplication.presentation.components.ClickableLoginTextComponent
 import com.gaurav.funapplication.presentation.components.DividerComponent
-import com.gaurav.funapplication.presentation.components.HeaderComponent
+import com.gaurav.funapplication.presentation.components.HeadingTextComponent
 import com.gaurav.funapplication.presentation.components.MyPasswordFieldComponent
 import com.gaurav.funapplication.presentation.components.MyTextFieldComponent
 import com.gaurav.funapplication.presentation.components.NormalTextComponent
@@ -58,7 +58,7 @@ fun SignupScreen(
             ) {
                 Spacer(modifier = Modifier.height(20.dp))
                 NormalTextComponent(stringResource(R.string.hello))
-                HeaderComponent(stringResource(R.string.create_account))
+                HeadingTextComponent(stringResource(R.string.create_account))
                 Spacer(modifier = Modifier.height(20.dp))
                 MyTextFieldComponent(
                     stringResource(R.string.first_name),
