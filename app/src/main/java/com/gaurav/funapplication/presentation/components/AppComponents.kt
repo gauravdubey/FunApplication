@@ -12,17 +12,22 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Logout
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -55,6 +60,7 @@ import com.gaurav.funapplication.presentation.theme.colorGray
 import com.gaurav.funapplication.presentation.theme.colorPrimary
 import com.gaurav.funapplication.presentation.theme.colorSecondary
 import com.gaurav.funapplication.presentation.theme.colorText
+import com.gaurav.funapplication.presentation.theme.colorWhite
 import com.gaurav.funapplication.presentation.theme.componentShapes
 
 @Composable
@@ -95,7 +101,7 @@ fun MyTextFieldComponent(
     labelValue: String,
     painterResource: Painter,
     onTextSelected: (String) -> Unit,
-    errorStatus: Boolean=false
+    errorStatus: Boolean = false
 ) {
     val textValue = remember { mutableStateOf("") }
 
@@ -131,7 +137,7 @@ fun MyTextFieldComponent(
         singleLine = true,
         maxLines = 1,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
-        isError =!errorStatus
+        isError = !errorStatus
     )
 }
 
@@ -141,7 +147,7 @@ fun MyPasswordFieldComponent(
     labelValue: String,
     painterResource: Painter,
     onTextSelected: (String) -> Unit,
-    errorStatus: Boolean=false
+    errorStatus: Boolean = false
 ) {
 
     val localFocusManager = LocalFocusManager.current
@@ -202,7 +208,11 @@ fun MyPasswordFieldComponent(
 }
 
 @Composable
-fun CheckBoxComponent(value: String, onTextSelected: (String) -> Unit, onCheckChanged:(Boolean)->Unit) {
+fun CheckBoxComponent(
+    value: String,
+    onTextSelected: (String) -> Unit,
+    onCheckChanged: (Boolean) -> Unit
+) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
@@ -254,7 +264,7 @@ fun ClickableTextComponent(value: String, onTextSelected: (String) -> Unit) {
 }
 
 @Composable
-fun ButtonComponent(value: String, onButtonClicked: () -> Unit, isEnable:Boolean=false) {
+fun ButtonComponent(value: String, onButtonClicked: () -> Unit, isEnable: Boolean = false) {
     Button(
         onClick = {
             onButtonClicked.invoke()
@@ -371,5 +381,37 @@ fun UnderlineTextComponent(value: String) {
         color = colorResource(id = R.color.colorText),
         textAlign = TextAlign.Center,
         textDecoration = TextDecoration.Underline
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun AppToolbar(toolbarTitle: String, logoutButtonClicked: () -> Unit) {
+    TopAppBar(
+        title = { Text(text = toolbarTitle, color = Color.White, fontSize = 20.sp) },
+        navigationIcon = {
+            IconButton(onClick = { /* Handle navigation */ }) {
+                Icon(
+                    imageVector = Icons.Filled.Menu,
+                    contentDescription = stringResource(R.string.menu),
+                    tint = Color.White
+                )
+            }
+        },
+        actions = {
+            IconButton(onClick = {
+                logoutButtonClicked()
+            }) {
+                Icon(
+                    imageVector = Icons.Filled.Logout,
+                    contentDescription = stringResource(R.string.logout),
+                    tint = colorWhite
+                )
+            }
+        },
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = Color(0xFF6200EA), // Toolbar background color
+            titleContentColor = Color.White // Title text color
+        )
     )
 }

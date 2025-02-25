@@ -12,7 +12,7 @@ import com.gaurav.funapplication.presentation.screens.TermsAndConditionsScreen
 @Composable
 fun AppNavigation(navController: NavHostController) {
 
-    NavHost(navController = navController, startDestination = AppRoutes.SignupScreen.route) {
+    NavHost(navController = navController, startDestination = AppRoutes.LoginScreen.route) {
         composable(AppRoutes.SignupScreen.route) {
             SignupScreen(navController)
         }

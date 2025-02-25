@@ -19,5 +19,7 @@
     <string name="already_account">"Already have an account? "</string>
     <string name="do_not_have_account">"Don't have an account yet? "</string>
     <string name="forgot_password">Forgot your password?</string>
+    <string name="menu">Menu</string>
+    <string name="home">Home</string>
 
 </resources>
