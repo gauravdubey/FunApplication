@@ -1,16 +1,16 @@
 [versions]
-agp = "8.8.1"
-firebaseBom = "33.9.0"
+agp = "8.8.2"
+firebaseBom = "33.10.0"
 kotlin = "2.1.10"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
-activityCompose = "1.10.0"
+activityCompose = "1.10.1"
 composeBom = "2025.02.00"
 materialIconsExtended = "1.7.8"
-navigation-compose = "2.8.7"
+navigation-compose = "2.8.8"
 ksp = "2.1.10-1.0.30"
 retrofit = "2.11.0"
 retrofit-logging-interceptor = "4.12.0"
@@ -20,7 +20,7 @@ room = "2.6.1"
 hilt = "2.52"
 hilt-navigation-compose = "1.2.0"
 firebaseAuthVersion = "23.2.0"
-
+googleServiceVersion="4.4.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -61,4 +61,5 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServiceVersion" }
 
